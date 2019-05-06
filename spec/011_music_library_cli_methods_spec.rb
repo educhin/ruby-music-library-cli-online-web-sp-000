@@ -1,4 +1,5 @@
 require "spec_helper"
+require 'pry'
 
 describe "MusicLibraryController - CLI Methods" do
   let(:music_library_controller) { MusicLibraryController.new("./spec/fixtures/mp3s") }
@@ -27,6 +28,7 @@ describe "MusicLibraryController - CLI Methods" do
 
   describe "#list_artists" do
     it "prints all artists in the music library in a numbered list (alphabetized by artist name)" do
+
       expect($stdout).to receive(:puts).with("1. Action Bronson")
       expect($stdout).to receive(:puts).with("2. Jurassic 5")
       expect($stdout).to receive(:puts).with("3. Real Estate")
@@ -87,7 +89,7 @@ describe "MusicLibraryController - CLI Methods" do
       Song.create_from_filename("Real Estate - Wonder Years - dream pop.mp3")
 
       allow(music_library_controller).to receive(:gets).and_return("Real Estate")
-
+      
       expect($stdout).to receive(:puts).with("Please enter the name of an artist:")
       expect($stdout).to receive(:puts).with("1. Green Aisles - country")
       expect($stdout).to receive(:puts).with("2. It's Real - hip-hop")

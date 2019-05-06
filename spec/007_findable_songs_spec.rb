@@ -1,9 +1,11 @@
+require 'pry'
 context "Song" do
   let!(:song_one) { Song.create("The King of Carrot Flowers, Pt. One") }
   let!(:song_two) { Song.create("In the Aeroplane Over the Sea") }
 
   describe ".find_by_name" do
     it "finds a song instance in @@all by the name property of the song" do
+      # binding.pry
       expect(Song.find_by_name("In the Aeroplane Over the Sea")).to be(song_two)
     end
   end
@@ -11,7 +13,6 @@ context "Song" do
   describe ".find_or_create_by_name" do
     it "returns (does not recreate) an existing song with the provided name if one exists in @@all" do
       same_song = Song.find_or_create_by_name("In the Aeroplane Over the Sea")
-
       expect(Song.all.length).to eq(2)
       expect(same_song).to be(song_two)
     end
